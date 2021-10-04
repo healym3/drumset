@@ -2,12 +2,14 @@
 for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
     makeSound(this.innerHTML);
+    buttonAnimation(this.innerHTML);
   });
 }
 
 //Detecting Keyboard keys down
 document.addEventListener("keydown", function(event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 //Use either button html or keydown key to play correct sound
@@ -43,4 +45,12 @@ function makeSound(key) {
       break;
     default: console.log(this.innerHTML);
   }
+}
+
+function buttonAnimation (key) {
+  var activeButton = document.querySelector("." + key);
+  activeButton.classList.add("pressed");
+  setTimeout(function (){
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
